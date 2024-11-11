@@ -42,7 +42,6 @@ class HomeController extends ChangeNotifier {
 
     for (String line in file) {
       if (line.startsWith('#EXTINF:')) {
-        // tvg-name, tvg-logo, group-title değerlerini ayırmak için RegExp kullan
         var nameMatch = RegExp(r'tvg-name="([^"]+)"').firstMatch(line);
         if (nameMatch == null) {
           nameMatch = RegExp(r'tvg-id="([^"]+)"').firstMatch(line);
@@ -63,13 +62,13 @@ class HomeController extends ChangeNotifier {
 
         if (currentChannel != null) {
           String group = currentChannel.groupTitle ??
-              'Unknown'; // Group by group-title or 'Unknown' if null
+              'Unknown';
 
           if (!groupedIptv.containsKey(group)) {
-            groupedIptv[group] = []; // Create a new list if group doesn't exist
+            groupedIptv[group] = []; 
           }
           groupedIptv[group]!.add(
-              currentChannel); // Add channel to the correct group
+              currentChannel);
         }
       }
     }
